@@ -4,8 +4,8 @@ int main(void)
 {
 float nombre;
 printf("entrez la temp en degrés");
-scanf("%f\n", &nombre);
-printf("%f\n", nombre*33.8);
+scanf("%f", &nombre);
+printf("%f\n", (nombre*1.8) + 32);
 
 return 0;
 }
