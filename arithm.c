@@ -14,7 +14,7 @@ printf("%d\n",somme);
 printf("%d\n",difference);
 printf("%d\n",produit);
 printf("%f\n",quotient);
-printf("%d\n",quotient);
+printf("%d\n",modulo);
 
 return 0;
 }
