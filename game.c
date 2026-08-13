@@ -4,7 +4,7 @@
 #include <stdbool.h>
 // #include <stdlib.h>
 struct Joueur{
-    char name;
+    char name[25];
     int pv;
     bool protect;
 };
@@ -19,6 +19,7 @@ void action(int choix, struct Joueur *joueur, struct Joueur *cible)
         }
         else {
         printf("attaque de %s rate\n",joueur->name);
+        cible->protect = false;
         }
     }
     else if (choix == 2)
@@ -41,14 +42,14 @@ int main(void)
 {
     srand(time(NULL));
     int jeu = 1;
-    struct Joueur hero = {'hero',100,false};
-    struct Joueur enemie = {'mechant',80,false};
+    struct Joueur hero = {"hero",100,false};
+    struct Joueur enemie = {"mechant",80,false};
     int choix;
 
     while (jeu == 1)
     {
         printf("pv joueur: %d - pv enemie: %d\n", hero.pv, enemie.pv);
-        printf("attaquer ou bloquer (1-2)");
+        printf("attaquer ou bloquer (1-2)\n");
         scanf("%d", &choix);
         action(choix,&hero,&enemie);
         int choix = (rand() % 2) + 1;
