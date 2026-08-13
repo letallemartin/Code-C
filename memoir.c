@@ -6,7 +6,7 @@ int main(void)
     int tabl[5];
     int taille = 5;
     // printf("*%lu\n", sizeof(int));
-    int *ptr = malloc(taille & sizeoff(*ptr)); //ou int *ptr = malloc(taille & sizeoff(int));
+    int *ptr = malloc(taille * sizeof(*ptr)); //ou int *ptr = malloc(taille & sizeoff(int));
     if (ptr == NULL)
     {
         printf("error !!!\n");
