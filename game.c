@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h> // Nécessaire pour rand() et srand()
 #include <time.h>   // Nécessaire pour time()
+#include <stdbool.h>
 // #include <stdlib.h>
 struct Joueur{
     char name;
