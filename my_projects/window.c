@@ -8,7 +8,6 @@ int main(void)
 {
     bool isopen = true;
     SDL_Event event;
-    SDL_FRect rect = {100.0f, 150.0f, 200.0f, 100.0f};
 
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -17,7 +16,6 @@ int main(void)
     }
 
     SDL_Window *fenetre = SDL_CreateWindow("ma fenetre SDL3", WIDTH, HEIGHT, 0);
-    SDL_Renderer *renderer = SDL_CreateRenderer(fenetre, NULL);
 
     if (fenetre == NULL)
     {
@@ -38,38 +36,6 @@ int main(void)
                 isopen = false;
             }
         }
-
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        SDL_RenderClear(renderer);
-
-        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-        SDL_RenderFillRect(renderer, &rect);
-
-        SDL_RenderPresent(renderer);
-
-        rect.x += vitesse_x;
-        rect.y += vitesse_y;
-
-        if (rect.x + rect.w >= WIDTH) 
-        {
-            vitesse_x = -vitesse_x;
-        }
-        else if (rect.x  <= 0) 
-        {
-            vitesse_x = -vitesse_x;
-        }
-
-        if (rect.y + rect.h >= HEIGHT) 
-        {
-            vitesse_y = -vitesse_y;
-        }
-        else if (rect.y  <= 0) 
-        {
-            vitesse_y = -vitesse_y;
-        }
-
-        SDL_Delay(16);
-        
     }
 
     SDL_DestroyWindow(fenetre);
