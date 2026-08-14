@@ -43,4 +43,4 @@ int main(void)
     return 0;
 }
 
-//gcc rect1.c -I . -L . -lSDL3 -o rect1.exe
+//gcc window.c -I . -L . -lSDL3 -o window.exe
