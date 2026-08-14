@@ -22,7 +22,8 @@ int main(void)
         printf("ptr[%d] = %d\n",i , ptr[i]);
     }
     free(ptr);
-
+    printf(" avant ptr = NULL : %p\n", ptr);
     ptr = NULL;
+    printf(" apres ptr = NULL : %p\n", ptr);
     return 0;
 }
