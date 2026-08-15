@@ -17,8 +17,6 @@ int main(void)
     }
 
     SDL_Window *fenetre = SDL_CreateWindow("ma fenetre SDL3", WIDTH, HEIGHT, 0);
-    
-    
     SDL_Renderer *renderer = SDL_CreateRenderer(fenetre, NULL);
 
     if (fenetre == NULL)

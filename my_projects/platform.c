@@ -30,6 +30,7 @@ int main(void)
 
     float vitesse_x = 4.0f;
     float vitesse_y = 4.0f;
+    bool key[SDL_SCANCODE_COUNT] = {0};
 
     while (isopen) 
     {
@@ -49,34 +50,26 @@ int main(void)
 
         SDL_RenderPresent(renderer);
 
-        rect.x += vitesse_x;
-        rect.y += vitesse_y;
+    
 
-        if (rect.x + rect.w >= WIDTH) 
+        if (key[SDL_SCANCODE_D])
         {
-            vitesse_x = -vitesse_x;
-        }
-        else if (rect.x  <= 0) 
-        {
-            vitesse_x = -vitesse_x;
+            rect.x += vitesse_x;
         }
 
-        if (rect.y + rect.h >= HEIGHT) 
+        if (key[SDL_SCANCODE_Q])
         {
-            vitesse_y = -vitesse_y;
+           rect.x -= vitesse_x;
         }
-        else if (rect.y  <= 0) 
-        {
-            vitesse_y = -vitesse_y;
-        }
-
+        
         SDL_Delay(16);
         
     }
 
     SDL_DestroyWindow(fenetre);
+    SDL_DestroyRenderer(renderer);
     SDL_Quit();
     return 0;
 }
 
-//gcc rect1.c -I . -L . -lSDL3 -o rect1.exe
+//gcc platform.c -I . -L . -lSDL3 -o platform.exe
