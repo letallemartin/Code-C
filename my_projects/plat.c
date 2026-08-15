@@ -29,6 +29,13 @@ int main(void)
 
     SDL_Renderer *renderer = SDL_CreateRenderer(fenetre, NULL);
 
+    if (renderer == NULL)
+    {
+         printf("erreur lors de la creation du renderer: %s\n", SDL_GetError());
+         SDL_DestroyWindow(fenetre);
+         SDL_Quit();
+         return 1;
+    }
 
     float vitesse_x = 4.0f;
     float vitesse_y = 0.0f;
@@ -59,22 +66,21 @@ int main(void)
         bool au_dessus = player.x + player.w > rect.x &&
                  player.x < rect.x + rect.w;
 
-        if (au_dessus && player.y + player.h <= rect.y)
-        {
-            vitesse_y += gravite;
-            player.y += vitesse_y;
+        float prev_y = player.y;
+        vitesse_y += gravite;
+        player.y += vitesse_y;
 
-            if (player.y + player.h > rect.y)
+        if (au_dessus)
+        {
+            float prev_bottom = prev_y + player.h;
+            float bottom = player.y + player.h;
+            if (prev_bottom <= rect.y && bottom > rect.y)
             {
                 player.y = rect.y - player.h;
                 vitesse_y = 0.0f;
             }
         }
-        else if (!au_dessus)
-        {
-            vitesse_y += gravite;
-            player.y += vitesse_y;
-        }
+
 
         if (key[SDL_SCANCODE_D])
         {
@@ -106,4 +112,4 @@ int main(void)
     return 0;
 }
 
-// gcc rect1.c -I . -L . -lSDL3 -o rect1.exe
+// gcc plat.c -I . -L . -lSDL3 -o plat1.exe
