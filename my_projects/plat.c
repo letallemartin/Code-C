@@ -65,11 +65,9 @@ int main(void)
 
         bool au_dessus = player.x + player.w > rect.x &&
                  player.x < rect.x + rect.w;
-
         float prev_y = player.y;
         vitesse_y += gravite;
         player.y += vitesse_y;
-
         if (au_dessus)
         {
             float prev_bottom = prev_y + player.h;
@@ -81,6 +79,10 @@ int main(void)
             }
         }
 
+        if (key[SDL_SCANCODE_SPACE])
+        {
+            player.y -= 10.f;
+        }
 
         if (key[SDL_SCANCODE_D])
         {
