@@ -66,6 +66,15 @@ int main(void)
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
         SDL_RenderFillRect(renderer, &rect);
 
+        for (int i = 0; i < 20; i++)
+        {
+            if (tab[i].est_actif == true)
+            {
+                SDL_RenderFillRect(renderer, &tab[i].bull);
+            }
+
+        }
+
         SDL_RenderPresent(renderer);
 
     
@@ -89,7 +98,7 @@ int main(void)
             rect.x = 0;
         }
 
-        if (key[SDL_SCANCODE_Z])
+        if (key[SDL_SCANCODE_SPACE])
         {
             for (int i = 0; i < 20; i++)
             {
@@ -101,7 +110,11 @@ int main(void)
                 }
             }
         }
+        for (int i = 0; i < 20; i++)
+        {
+            tab[i].bull.y -=2.0f;
 
+        }
         SDL_Delay(16);
     }
 
