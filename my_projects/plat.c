@@ -19,7 +19,6 @@ int main(void)
     }
 
     SDL_Window *fenetre = SDL_CreateWindow("ma fenetre SDL3", WIDTH, HEIGHT, 0);
-    SDL_Renderer *renderer = SDL_CreateRenderer(fenetre, NULL);
 
     if (fenetre == NULL)
     {
@@ -27,6 +26,9 @@ int main(void)
         SDL_Quit();
         return 1;
     }
+
+    SDL_Renderer *renderer = SDL_CreateRenderer(fenetre, NULL);
+
 
     float vitesse_x = 4.0f;
     float vitesse_y = 0.0f;
@@ -98,9 +100,10 @@ int main(void)
         SDL_Delay(16);
     }
 
+    SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(fenetre);
     SDL_Quit();
     return 0;
 }
 
-//gcc rect1.c -I . -L . -lSDL3 -o rect1.exe
+// gcc rect1.c -I . -L . -lSDL3 -o rect1.exe
