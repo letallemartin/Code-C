@@ -9,6 +9,14 @@ int main(void)
     bool isopen = true;
     SDL_Event event;
     SDL_FRect rect = {400.0f, 500.0f, 60.0f, 60.0f};
+    typedef struct  {
+        SDL_FRect bull;
+        bool est_actif;
+    } bullet;
+
+    bullet tab[20] = {0};
+
+    
 
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -48,6 +56,7 @@ int main(void)
             {
                 key[event.key.scancode] = false;
             }
+             
             
         }
 
@@ -70,6 +79,7 @@ int main(void)
         {
            rect.x -= vitesse_x;
         }
+
         if (rect.x + rect.w >= WIDTH) 
         {
             rect.x = WIDTH - rect.w;
@@ -78,6 +88,20 @@ int main(void)
         {
             rect.x = 0;
         }
+
+        if (key[SDL_SCANCODE_Z])
+        {
+            for (int i = 0; i < 20; i++)
+            {
+            if (tab[i].est_actif == false)
+                {
+                    tab[i].est_actif = true;
+                    tab[i].bull = (SDL_FRect){rect.x, rect.y, 20.0f, 20.0f};
+                    break;
+                }
+            }
+        }
+
         SDL_Delay(16);
     }
 
