@@ -19,11 +19,18 @@ int main(void)
     }
 
     SDL_Window *fenetre = SDL_CreateWindow("ma fenetre SDL3", WIDTH, HEIGHT, 0);
-    SDL_Renderer *renderer = SDL_CreateRenderer(fenetre, NULL);
-
     if (fenetre == NULL)
     {
-        printf("erreur lors de la creation de la fenetre: %s\n", SDL_GetError());
+        printf("Erreur lors de la creation de la fenetre : %s\n", SDL_GetError());
+        SDL_Quit();
+        return 1;
+    }
+
+    SDL_Renderer *renderer = SDL_CreateRenderer(fenetre, NULL);
+    if (renderer == NULL)
+    {
+        printf("Erreur lors de la creation du renderer : %s\n", SDL_GetError());
+        SDL_DestroyWindow(fenetre);
         SDL_Quit();
         return 1;
     }
