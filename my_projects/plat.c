@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <SDL3/SDL.h>
 #include <stdbool.h>
+
 #define WIDTH 800
 #define HEIGHT 600
+#define GRAVITE 0.5f
+#define IMPULSION -7.0f
 
 int main(void)
 {
@@ -10,6 +13,14 @@ int main(void)
     SDL_Event event;
     SDL_FRect rect = {50.0f, 500.0f, 700.0f, 50.0f};
     SDL_FRect player = {350.0f, 105.0f, 20.0f, 20.0f};
+
+    float vitesse_x = 4.0f;
+    float vitesse_y = 0.0f;
+
+    bool key[SDL_SCANCODE_COUNT] = {0};
+
+    bool etat_sol = true;
+
 
 
     if (!SDL_Init(SDL_INIT_VIDEO))
@@ -37,11 +48,7 @@ int main(void)
          return 1;
     }
 
-    float vitesse_x = 4.0f;
-    float vitesse_y = 0.0f;
-    float gravite = 0.5f;
 
-    bool key[SDL_SCANCODE_COUNT] = {0};
 
     while (isopen)
     {
@@ -65,8 +72,16 @@ int main(void)
 
         bool au_dessus = player.x + player.w > rect.x &&
                  player.x < rect.x + rect.w;
+
+        if (etat_sol && key[SDL_SCANCODE_SPACE])
+        {
+            vitesse_y = IMPULSION;
+            etat_sol = false;
+        }
+
         float prev_y = player.y;
-        vitesse_y += gravite;
+
+        vitesse_y += GRAVITE;
         player.y += vitesse_y;
         if (au_dessus)
         {
@@ -76,12 +91,13 @@ int main(void)
             {
                 player.y = rect.y - player.h;
                 vitesse_y = 0.0f;
+                etat_sol = true;
             }
         }
 
-        if (key[SDL_SCANCODE_SPACE])
+        if (key[SDL_SCANCODE_LCTRL])
         {
-            player.y -= 10.f;
+            player.y -= 10.0f;
         }
 
         if (key[SDL_SCANCODE_D])
