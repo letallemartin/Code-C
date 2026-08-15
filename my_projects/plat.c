@@ -9,8 +9,8 @@ int main(void)
     bool isopen = true;
     SDL_Event event;
     SDL_FRect rect = {50.0f, 500.0f, 700.0f, 50.0f};
+    SDL_FRect player = {350.0f, 105.0f, 20.0f, 20.0f};
 
-    SDL_FRect player = {350.0f, 475.0f, 20.0f, 20.0f};
 
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -29,9 +29,10 @@ int main(void)
     }
 
     float vitesse_x = 4.0f;
-    float vitesse_y = 4.0f;
+    float vitesse_y = 0.0f;
+    float gravite = 0.5f;
 
-    char key[SDLK_AT] = {0}; // tableau qui vérifie l'appui UP ou non DOWN d'une touche, ligne 46 à 52
+    bool key[SDL_SCANCODE_COUNT] = {0};
 
     while (isopen)
     {
@@ -51,6 +52,26 @@ int main(void)
                     key[event.key.scancode] = false;
                     break;
             }
+        }
+
+        bool au_dessus = player.x + player.w > rect.x &&
+                 player.x < rect.x + rect.w;
+
+        if (au_dessus && player.y + player.h <= rect.y)
+        {
+            vitesse_y += gravite;
+            player.y += vitesse_y;
+
+            if (player.y + player.h > rect.y)
+            {
+                player.y = rect.y - player.h;
+                vitesse_y = 0.0f;
+            }
+        }
+        else if (!au_dessus)
+        {
+            vitesse_y += gravite;
+            player.y += vitesse_y;
         }
 
         if (key[SDL_SCANCODE_D])
