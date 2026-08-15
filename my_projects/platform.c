@@ -8,7 +8,7 @@ int main(void)
 {
     bool isopen = true;
     SDL_Event event;
-    SDL_FRect rect = {100.0f, 150.0f, 200.0f, 100.0f};
+    SDL_FRect rect = {400.0f, 500.0f, 60.0f, 60.0f};
 
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -28,8 +28,8 @@ int main(void)
         return 1;
     }
 
-    float vitesse_x = 4.0f;
-    float vitesse_y = 4.0f;
+    float vitesse_x = 7.0f;
+    float vitesse_y = 7.0f;
     bool key[SDL_SCANCODE_COUNT] = {0};
 
     while (isopen) 
@@ -40,6 +40,15 @@ int main(void)
             {
                 isopen = false;
             }
+            else if (event.type == SDL_EVENT_KEY_DOWN)
+            {
+                key[event.key.scancode] = true;
+            }
+            else if (event.type == SDL_EVENT_KEY_UP)
+            {
+                key[event.key.scancode] = false;
+            }
+            
         }
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -51,7 +60,7 @@ int main(void)
         SDL_RenderPresent(renderer);
 
     
-
+        
         if (key[SDL_SCANCODE_D])
         {
             rect.x += vitesse_x;
@@ -61,9 +70,15 @@ int main(void)
         {
            rect.x -= vitesse_x;
         }
-        
+        if (rect.x + rect.w >= WIDTH) 
+        {
+            rect.x = WIDTH - rect.w;
+        }
+        else if (rect.x  <= 0) 
+        {
+            rect.x = 0;
+        }
         SDL_Delay(16);
-        
     }
 
     SDL_DestroyWindow(fenetre);
