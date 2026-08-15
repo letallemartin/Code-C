@@ -4,10 +4,10 @@
 int main(void)
 {
     int x = 42;
-    int *ptr = & x;
+    int *ptr = &x;
 
     printf("%d\n", x); // 42 — la valeur
-    printf("%d\n",(void*)ptr); // 0x7ff… — l'adresse
+    printf("%p\n",(void*)ptr); // 0x7ff… — l'adresse
     printf("%d\n", *ptr); // valeur à l'adresse
     // (déréférencement)
 
