@@ -9,15 +9,14 @@ char nom[50] ;
 int age;
 }Personne;
 Personne alice = {"marie",50} ;
-Personne bob = {"marie",40} ;
 
-printf("%s\n", alice.nom, alice.age);
+printf("%s\n", alice.nom); 
 
 Personne *ptr = &alice;
 printf("%s\n", ptr -> nom);
 ptr -> age = 26;
 
-Personne *p = malloc(sizeof(Personne));
+Personne *p = malloc(sizeof(Personne)); 
 strcpy(p->nom, "charlie");
 p -> age = 28;
 
