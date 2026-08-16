@@ -1,0 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_reverse_alphabet.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lwicket <louis.wicket@protonmail.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/02 19:20:28 by lwicket           #+#    #+#             */
+/*   Updated: 2026/02/02 19:21:35 by lwicket          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <unistd.h> 
+
+void ft_print_reverse_alphabet(void)
+{
+    write(1, "zyxwvutsrqponmlkjihgfedcba", 26);
+}
