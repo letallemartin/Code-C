@@ -15,10 +15,10 @@
 void ft_print_comb(void)
 {
     int a;
-    int c;
+    int b;
     int c;
     char tab[3];
-    a = 1;
+    a = 0;
     while (a < 8)
     {
         b = a + 1;
