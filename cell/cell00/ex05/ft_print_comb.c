@@ -14,15 +14,17 @@
 
 void ft_print_comb(void)
 {
-    int a = 0;
+    int a;
+    int c;
+    int c;
     char tab[3];
-
+    a = 1;
     while (a < 8)
     {
-        int b = a + 1;
+        b = a + 1;
         while (b < 9)
         {
-            int c = b + 1;
+            c = b + 1;
             while (c < 10)
             {
                 if (a < b && b < c)
