@@ -21,7 +21,7 @@ void ft_putnbr(int nb)
         write(1, "-", 1);
         nb = -nb;
     }
-    while (nb > i*10 )
+    while (nb / i >= 10)
     {
         i = i*10;
     } 
@@ -34,10 +34,10 @@ void ft_putnbr(int nb)
     }
 }
 
-int main(void)
-{
-    ft_putnbr(-4257);
-    return 0;
-}
+// int main(void)
+// {
+//     ft_putnbr(10);
+//     return 0;
+// }
 
 
