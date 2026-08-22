@@ -1,4 +1,4 @@
-#include <stdio.h>
+
 int	ft_atoi(char *str)
 {
 	int	i;
@@ -7,30 +7,29 @@ int	ft_atoi(char *str)
 	i = 0;
 	nbr = 0;
 	signe = 1;
-	while (str[i] != '\0')
-	{
-		if (str[i] > 47 && str[i] < 58)
+		while (str[i] >= 9 && str[i] <= 13 || str[i] == ' ')
 		{
-			nbr = nbr * 10 + (str[i] - '0');
+			i++;
 		}
-		else if (str[i] == 45)
+		while (str[i] == '+' || str[i] == '-')
 		{
-			signe = -signe;
+			if (str[i] == '-')
+			{
+				signe = -signe;
+			}
+			i++;
 		}
-		else if (str[i] < 48 || str[i] > 57 && str[i] != 45)
+		while (str[i] >= '0' && str[i] <= '9')
 		{
-			printf("%d", nbr);
-			return (nbr*signe);
+			nbr = nbr*10 + (str[i] - '0');
+			i++;
 		}
-		i++;
-	}
-	printf("%d", nbr);
 	return (nbr*signe);
 }
 
-int main(void)
-{
-	char str[10] = "-22he542";
-	ft_atoi(str);
-	return (0);
-}
+// int main(void)
+// {
+// 	char str[10] = " ---2u2";
+// 	ft_atoi(str);
+// 	return (0);
+// }
